@@ -1,5 +1,7 @@
 from datetime import datetime
-from aiogram import types, executor, Bot, Dispatcher
+from aiogram import types, Bot, Dispatcher
+from aiogram import executor
+
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
 from aiogram.utils.exceptions import ChatNotFound
