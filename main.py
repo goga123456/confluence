@@ -2,7 +2,7 @@ from datetime import datetime
 from aiogram import types, Bot, Dispatcher
 
 
-from aiogram.contrib.fsm_storage.memory import MemoryStorage
+from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
 from aiogram.utils.exceptions import ChatNotFound
 from google.oauth2.service_account import Credentials
