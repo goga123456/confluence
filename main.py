@@ -11,7 +11,7 @@ import os
 import states
 from config import TOKEN_API
 from kbs.inline_kbs import get_p_or_v_kb
-from kbs.reply_kbs import get_start_kb, get_start_and_back_kb, admin_menu, create_and_check
+from kbs.reply_kbs import get_start_kb, get_start_and_back_kb, admin_menu, create_and_check, create_and_check_for_admin
 from states import ProfileStatesGroup, AdminStatesGroup
 
 storage = MemoryStorage()
@@ -150,13 +150,10 @@ async def cmd_start(message: types.Message, state: FSMContext) -> None:
                                reply_markup=get_start_kb())
         await state.finish()
     if message.text == "Админ панель":
-        if message.from_user.id == 94766813 or message.from_user.id == 733475703 or message.from_user.id == 624811234:
-            await bot.send_message(chat_id=message.from_user.id,
-                                   text="Выберите действие", reply_markup=admin_menu())
-            await AdminStatesGroup.admin_panel.set()
-        else:
-            await bot.send_message(chat_id=message.from_user.id,
-                                   text="Вы не администратор")
+        await bot.send_message(chat_id=message.from_user.id,
+                                text="Выберите действие", reply_markup=admin_menu())
+        await AdminStatesGroup.admin_panel.set()
+        
 
 @dp.message_handler(lambda message: not message.text, state=ProfileStatesGroup.send_text)
 async def check_info(message: types.Message):
