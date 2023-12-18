@@ -27,6 +27,13 @@ def create_and_check() -> ReplyKeyboardMarkup:
     kuser = ReplyKeyboardMarkup(resize_keyboard=True)
     b1 = KeyboardButton('Создать заявку')
     b2 = KeyboardButton('Проверить баллы')
+    kuser.add(b1, b2)
+    return kuser
+
+def create_and_check_for_admin() -> ReplyKeyboardMarkup:
+    kuser = ReplyKeyboardMarkup(resize_keyboard=True)
+    b1 = KeyboardButton('Создать заявку')
+    b2 = KeyboardButton('Проверить баллы')
     b3 = KeyboardButton('Админ панель')
     kuser.add(b1, b2).add(b3)
     return kuser
