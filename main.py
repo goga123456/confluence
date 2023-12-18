@@ -123,9 +123,14 @@ async def add_score(user_id, new_score):
 
 @dp.message_handler(commands=['start'], state='*')
 async def cmd_start(message: types.Message, state: FSMContext) -> None:
-    await bot.send_message(chat_id=message.from_user.id,
-                           text="Выберите действие",
-                           reply_markup=create_and_check())
+    if message.from_user.id == 94766813 or message.from_user.id == 733475703 or message.from_user.id == 624811234:
+        await bot.send_message(chat_id=message.from_user.id,
+                               text="Выберите действие",
+                               reply_markup=create_and_check_for_admin())
+    else:
+        await bot.send_message(chat_id=message.from_user.id,
+                               text="Выберите действие",
+                               reply_markup=create_and_check())
     if state is None:
         return
     await state.finish()
