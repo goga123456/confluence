@@ -134,7 +134,7 @@ async def cmd_start(message: types.Message, state: FSMContext) -> None:
 async def cmd_start(message: types.Message, state: FSMContext) -> None:
     if message.text == "Создать заявку":
         await bot.send_message(chat_id=message.from_user.id,
-                               text="Опишите что вы нашли за баг ,неточность или ошибку в Confluence",
+                               text="Опишите, что вы обнаружили (неточность, ошибка или баг)",
                                reply_markup=get_start_kb())
         await ProfileStatesGroup.send_text.set()
 
@@ -177,13 +177,13 @@ async def oborudovaniye_table_number(message: types.Message, state: FSMContext) 
     if message.text == "🔙":
         async with state.proxy() as data:
             await bot.send_message(chat_id=message.from_user.id,
-                                   text="Опишите что вы нашли за баг ,неточность или ошибку",
+                                   text="Опишите, что вы обнаружили (неточность, ошибка или баг)",
                                    reply_markup=get_start_kb())
             await ProfileStatesGroup.send_text.set()
     else:
         async with state.proxy() as data:
             data['name_surname'] = message.text
-            await bot.send_message(message.chat.id, text="Что вы хотите отправить фото или видео?",
+            await bot.send_message(message.chat.id, text="Вы хотите добавить фото или видео?",
                                    reply_markup=get_p_or_v_kb())
             await ProfileStatesGroup.send_photo_video.set()
 
@@ -196,7 +196,7 @@ async def load_photo(message: types.Message, state: FSMContext) -> None:
     if message.text == "🔙":
         async with state.proxy() as data:
             await bot.send_message(chat_id=message.from_user.id,
-                                   text="Что вы хотите отправить фото или видео?",
+                                   text="Вы хотите добавить фото или видео?",
                                    reply_markup=get_p_or_v_kb())
             await ProfileStatesGroup.send_photo_video.set()
     if message.photo:
@@ -224,7 +224,7 @@ async def load_video(message: types.Message, state: FSMContext) -> None:
     if message.text == "🔙":
         async with state.proxy() as data:
             await bot.send_message(chat_id=message.from_user.id,
-                                   text="Что вы хотите отправить фото или видео?",
+                                   text="Вы хотите добавить фото или видео?",
                                    reply_markup=get_p_or_v_kb())
             await ProfileStatesGroup.send_photo_video.set()
     if message.video:
